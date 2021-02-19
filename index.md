@@ -1,9 +1,8 @@
 ## WP_Query Arguments
 
 ```markdown
-<code>
 <?php
-	/**
+	/*
 	 * WordPress Query Comprehensive Reference
 	 * CODEX: http://codex.wordpress.org/Class_Reference/WP_Query#Parameters
 	 * Source: https://core.trac.wordpress.org/browser/tags/4.9.4/src/wp-includes/query.php
@@ -17,6 +16,7 @@
 
 	// Category Parameters - Show posts associated with certain categories.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Category_Parameters
+
 	'cat' => 5, // (int) - Display posts that have this category (and any children of that category), using category id.
 	'cat' => '-12,-34,-56' // Display all posts except those from a category by prefixing its id with a '-' (minus) sign.
 	'category_name' => 'staff, news', // (string) - Display posts that have these categories (and any children of that category), using category slug.
@@ -27,6 +27,7 @@
 
 	// Tag Parameters - Show posts associated with certain tags.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Tag_Parameters
+
 	'tag' => 'cooking', // (string) - use tag slug.
 	'tag_id' => 5, // (int) - use tag id.
 	'tag__and' => array( 2, 6), // (array) - use tag ids.
@@ -39,6 +40,7 @@
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Taxonomy_Parameters
 	// Important Note: tax_query takes an array of tax query arguments arrays (it takes an array of arrays)
 	// This construct allows you to query multiple taxonomies by using the relation parameter in the first (outer) array to describe the boolean relationship between the taxonomy queries.
+
 	'tax_query' => array( // (array) - use taxonomy parameters (available with Version 3.1).
     	'relation' => 'AND', // (string) - The logical relationship between each inner taxonomy array when there is more than one. Possible values are 'AND', 'OR'. Do not use with a single inner taxonomy array. Default value is 'AND'.
 	    array(
@@ -59,6 +61,7 @@
 
 	// Post & Page Parameters - Display content based on post and page parameters.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Post_.26_Page_Parameters
+
   	'p' => 1, // (int) - use post id.
   	'name' => 'hello-world', // (string) - use post slug.
   	'title' => 'Hello World' // (string) - use post title (available with Version 4.4)
@@ -75,6 +78,7 @@
 
 	// Password Parameters - Show content based on post and page parameters. Remember that default post_type is only set to display posts but not pages.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Password_Parameters
+
   	'has_password' => true, // (bool) - available with Version 3.9
                           // true for posts with passwords;
                           // false for posts without passwords;
@@ -83,6 +87,7 @@
 
 	// Post Type Parameters - Show posts associated with certain type or status.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Type_Parameters
+
   	'post_type' => array( // (string / array) - use post types. Retrieves posts by Post Types, default value is 'post';
 	    'post', // - a post.
 	    'page', // - a page.
@@ -91,11 +96,14 @@
 	    'nav_menu_item' // - a navigation menu item
 	    'my-custom-post-type', // - Custom Post Types (e.g. books)
   	),
+
   	// NOTE: The 'any' keyword available to both post_type and post_status queries cannot be used within an array.
+
   	'post_type' => 'any', // - retrieves any type except revisions and types with 'exclude_from_search' set to true.
 
 	// Post Status Parameters - Show posts associated with certain type or status.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Status_Parameters
+
     'post_status' => array( // (string | array) - use post status. Retrieves posts by Post Status, default value i'publish'.
       'publish', // - a published post or page.
       'pending', // - post is pending review.
@@ -106,12 +114,15 @@
       'inherit', // - a revision. see get_children.
       'trash', // - post is in trashbin (available with Version 2.9).
     ),
+
     // NOTE: The 'any' keyword available to both post_type and post_status queries cannot be used within an array.
+
     'post_status' => 'any', // - retrieves any status except those from post types with 'exclude_from_search' set to true.
 
 
 	// Comment Paremters - @since Version 4.9 Introduced the `$comment_count` parameter.
 	// https://codex.wordpress.org/Class_Reference/WP_Query#Comment_Parameters
+
     'comment_count' => 10 // (int | array) The amount of comments your CPT has to have ( Search operator will do a '=' operation )
     'comment_count' => array(
       'value' => 10 // (int) - The amount of comments your CPT has to have when comparing
@@ -120,6 +131,7 @@
 
 	// Pagination Parameters
     //http://codex.wordpress.org/Class_Reference/WP_Query#Pagination_Parameters
+
     'posts_per_page' => 10, // (int) - number of post to show per page (available with Version 2.1). Use 'posts_per_page' => -1 to show all posts.
                             // Note: if the query is in a feed, wordpress overwrites this parameter with the stored 'posts_per_rss' option. Treimpose the limit, try using the 'post_limits' filter, or filter 'pre_option_posts_per_rss' and return -1
     'nopaging' => false, // (bool) - show all posts or use pagination. Default value is 'false', use paging.
@@ -140,6 +152,7 @@
 
 	// Order & Orderby Parameters - Sort retrieved posts.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters
+
     'order' => 'DESC', // (string) - Designates the ascending or descending order of the 'orderby' parameter. Default to 'DESC'.
                        //Possible Values:
                        //'ASC' - ascending order from lowest to highest values (1, 2, 3; a, b, c).
@@ -168,6 +181,7 @@
 
 	// Date Parameters - Show posts associated with a certain time and date period.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Date_Parameters
+
     'year' => 2014, // (int) - 4 digit year (e.g. 2011).
     'monthnum' => 4, // (int) - Month number (from 1 to 12).
     'w' =>  25, // (int) - Week of the year (from 0 to 53). Uses the MySQL WEEK command. The mode is dependenon the "start_of_week" option.
@@ -201,6 +215,7 @@
 
 	// Custom Field Parameters - Show posts associated with a certain custom field.
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters
+
     'meta_key' => 'key', // (string) - Custom field key.
     'meta_value' => 'value', // (string) - Custom field value.
     'meta_value_num' => 10, // (number) - Custom field value.
@@ -223,16 +238,19 @@
 
 	// Permission Parameters - Display published posts, as well as private posts, if the user has the appropriate capability:
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Permission_Parameters
+
     'perm' => 'readable', // (string) Possible values are 'readable', 'editable'
 
 	// Mime Type Parameters - Used with the attachments post type.
 	// https://codex.wordpress.org/Class_Reference/WP_Query#Mime_Type_Parameters
+
     'post_mime_type' => 'image/gif', // (string/array) - Allowed mime types.
 
 
 	// Caching Parameters
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Caching_Parameters
 	// NOTE Caching is a good thing. Setting these to false is generally not advised.
+
     'cache_results' => true, // (bool) Default is true - Post information cache.
     'update_post_term_cache' => true, // (bool) Default is true - Post meta information cache.
     'update_post_meta_cache' => true, // (bool) Default is true - Post term information cache.
@@ -241,12 +259,14 @@
 
 	// Search Parameter
 	// http://codex.wordpress.org/Class_Reference/WP_Query#Search_Parameter
+
     's' => $s, // (string) - Passes along the query string variable from a search.
     'exact' => true, // (bool) - flag to make it only match whole titles/posts - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
     'sentence' => true, // (bool) - flag to make it do a phrase search - Default value is false.
 
 	// Post Field Parameters
 	// For more info see: http://codex.wordpress.org/Class_Reference/WP_Query#Return_Fields_Parameter
+
     'fields' => 'ids', // (string) - Which fields to return. All fields are returned by default.
                        // Possible values:
                        // 'ids'        - Return an array of post IDs.
@@ -270,5 +290,4 @@ endif;
 // Reset Post Data
 wp_reset_postdata();
 ?>
-</code>
 ```
